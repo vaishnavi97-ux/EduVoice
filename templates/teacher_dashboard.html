@@ -1,0 +1,119 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="d-flex justify-content-between align-items-center mb-4">
+  <h2 class="text-success">👩‍🏫 {{ teacher_name }}</h2>
+</div>
+
+<!-- Tabs -->
+<ul class="nav nav-tabs" id="dashboardTabs" role="tablist">
+  <li class="nav-item">
+    <button class="nav-link active" data-bs-toggle="tab" data-bs-target="#upload">Lecture Uploads</button>
+  </li>
+  <li class="nav-item">
+    <button class="nav-link" data-bs-toggle="tab" data-bs-target="#live">Live Transcription</button>
+  </li>
+</ul>
+
+<div class="tab-content mt-3">
+  <!-- Upload Tab -->
+  <div class="tab-pane fade show active" id="upload">
+    <form method="POST" enctype="multipart/form-data" class="mb-4">
+      <div class="mb-3">
+        <input type="text" name="title" class="form-control" placeholder="Lecture Title" required>
+      </div>
+      <div class="mb-3">
+        <input type="text" name="subject" class="form-control" placeholder="Subject" required>
+      </div>
+      <div class="mb-3">
+        <input type="file" name="file" class="form-control" required>
+      </div>
+      <button type="submit" class="btn btn-success">Upload Lecture</button>
+    </form>
+
+    <h4>Your Lectures</h4>
+    <table class="table table-striped align-middle">
+      <thead class="table-dark">
+        <tr>
+          <th>Title</th>
+          <th>Subject</th>
+          <th>Transcript</th>
+          <th>Summary</th>
+          <th>Type</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for lecture in lectures %}
+        <tr>
+          <td>{{ lecture.title }}</td>
+          <td>{{ lecture.subject }}</td>
+          <td>{{ lecture.transcript[:100] }}...</td>
+          <td>{{ lecture.summary[:100] }}...</td>
+          <td>
+            {% if lecture.file_path %}
+              Uploaded Audio
+            {% else %}
+              Live Session
+            {% endif %}
+          </td>
+          <td>
+            <a href="{{ url_for('edit_lecture', lecture_id=lecture.id) }}" class="btn btn-outline-primary btn-sm">Edit</a>
+            <form action="{{ url_for('delete_lecture', lecture_id=lecture.id) }}" method="POST" style="display:inline;">
+              <button type="submit" class="btn btn-outline-danger btn-sm">Delete</button>
+            </form>
+            <a href="{{ url_for('download_notes', lecture_id=lecture.id) }}" class="btn btn-outline-success btn-sm">Download Notes</a>
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Live Transcription Tab -->
+  <div class="tab-pane fade" id="live">
+    <h5 class="fw-bold">🎤 Live Transcription</h5>
+    <button id="startBtn" class="btn btn-success me-2">Start</button>
+    <button id="stopBtn" class="btn btn-danger" disabled>Stop</button>
+    <span id="recordIndicator" class="hidden ms-3 text-danger fw-bold">● Recording...</span>
+
+    <div class="mt-3">
+      <h6>Transcript</h6>
+      <textarea id="liveText" class="form-control" rows="6" readonly>Live transcription appears here...</textarea>
+    </div>
+
+    <div class="mt-3">
+      <h6>Summarised Notes</h6>
+      <textarea id="liveSummary" class="form-control" rows="4" readonly>Notes will appear here...</textarea>
+    </div>
+
+    <!-- Changed button: Upload Lecture instead of Download -->
+    <button id="uploadLive" class="btn btn-outline-success mt-3 hidden">Upload Lecture</button>
+    <!-- Modal for Lecture Details -->
+<div class="modal" id="lectureModal" tabindex="-1">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Save Live Lecture</h5>
+      </div>
+      <div class="modal-body">
+        <form id="lectureForm">
+          <div class="form-group">
+            <label for="lectureTitle">Lecture Title</label>
+            <input type="text" id="lectureTitle" class="form-control" required>
+          </div>
+          <div class="form-group">
+            <label for="lectureSubject">Subject</label>
+            <input type="text" id="lectureSubject" class="form-control" required>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" id="saveLectureBtn" class="btn btn-primary">OK</button>
+        <button type="button" id="cancelLectureBtn" class="btn btn-danger">Cancel</button>
+      </div>
+    </div>
+  </div>
+  </div>
+  </div>
+</div>
+{% endblock %}

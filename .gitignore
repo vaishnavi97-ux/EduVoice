@@ -1,0 +1,32 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+
+# Virtual environment
+venv/
+env/
+.venv/
+
+# Flask instance data / local database
+instance/
+
+# User uploaded files
+uploads/*
+
+# Keep the uploads folder in Git
+!uploads/.gitkeep
+
+# Environment variables / secrets
+.env
+.env.*
+!.env.example
+
+# IDE
+.vscode/
+.idea/
+
+# OS files
+.DS_Store
+Thumbs.db
+thismainaudioupload_recording_bothcame.txt

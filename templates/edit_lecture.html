@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% block content %}
+<h2 class="mb-4 text-primary">✏️ Edit Lecture</h2>
+
+<form method="POST" class="shadow-sm p-4 bg-light rounded">
+  <div class="mb-3">
+    <label for="title" class="form-label fw-bold">Lecture Title</label>
+    <input type="text" id="title" name="title" class="form-control" 
+           value="{{ lecture.title }}" required>
+  </div>
+
+  <div class="mb-3">
+    <label for="subject" class="form-label fw-bold">Subject</label>
+    <input type="text" id="subject" name="subject" class="form-control" 
+           value="{{ lecture.subject }}" required>
+  </div>
+
+  <button type="submit" class="btn btn-success">Save Changes</button>
+  <a href="{{ url_for('teacher_dashboard') }}" class="btn btn-secondary ms-2">Cancel</a>
+</form>
+{% endblock %}

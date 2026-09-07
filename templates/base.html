@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>EduVoice AI</title>
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+  <!-- Bootstrap Icons -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css">
+</head>
+<body>
+  <div class="app-window">
+    <!-- Top Navigation Bar -->
+    <nav class="navbar">
+      <h3 class="logo">EduVoice AI 🎓</h3>
+
+      <div class="nav-menu" id="navMenu">
+        <a href="{{ url_for('teacher_dashboard') }}" class="nav-link {% if active_tab=='teacher' %}active{% endif %}">Teacher Dashboard</a>
+        <a href="{{ url_for('student_dashboard') }}" class="nav-link {% if active_tab=='student' %}active{% endif %}">Student Dashboard</a>
+        <a href="{{ url_for('login') }}" class="nav-link {% if active_tab=='login' %}active{% endif %}">Login</a>
+        <a href="{{ url_for('register') }}" class="nav-link {% if active_tab=='register' %}active{% endif %}">Register</a>
+      </div>
+
+      {% if 'role' in session %}
+      <a href="{{ url_for('logout') }}" class="btn btn-outline-danger ms-3">
+        <i class="bi bi-box-arrow-right"></i> Logout
+      </a>
+      {% endif %}
+    </nav>
+
+    <!-- Main content -->
+    <div class="content p-4">
+      {% block content %}{% endblock %}
+    </div>
+  </div>
+
+  <!-- Load Bootstrap JS first -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+  <!-- Then load your custom script -->
+  <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+
+  <!-- Inline helper -->
+  <script>
+    // Hide menu after clicking any link
+    document.addEventListener("DOMContentLoaded", () => {
+      document.querySelectorAll("#navMenu .nav-link").forEach(link => {
+        link.addEventListener("click", () => {
+          document.getElementById("navMenu").style.display = "none";
+        });
+      });
+    });
+  </script>
+</body>
+</html>
