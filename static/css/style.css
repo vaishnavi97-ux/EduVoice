@@ -1,0 +1,188 @@
+body {
+  background-color: #f0f2f5;   /* soft neutral background */
+  padding: 30px;               /* gap around the floating window */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+/* Floating window */
+.app-window {
+  background-color: #ffffff;
+  border-radius: 16px;         
+  border: 2px solid #dcdcdc;   /* clear border */
+  box-shadow: 0 8px 24px rgba(0,0,0,0.2);
+  width: 1400px;               
+  height: 800px;               
+  overflow-y: auto;            
+  display: flex;
+  flex-direction: column;
+}
+
+/* Logo */
+.logo {
+  margin-left: 10px;
+  font-weight: 600;
+}
+/* Navbar */
+.navbar {
+  background-color: #1a1a40; /* navy blue */
+  color: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+}
+
+/* Menu links */
+.nav-menu {
+  display: flex;   /* always visible initially */
+  flex-direction: row;
+  gap: 20px;
+}
+.nav-link {
+  color: white;
+  text-decoration: none;
+  font-weight: 500;
+  padding: 6px 12px;
+  border-radius: 6px;
+  transition: 0.3s;
+}
+.nav-link:hover {
+  background-color: rgba(255,255,255,0.1);
+}
+.nav-link.active {
+  background-color: #0077b6;
+  box-shadow: 0 0 10px rgba(0,119,182,0.6);
+}
+
+/* Content area */
+.content {
+  background-color: #f8f9fa;
+  border-top-right-radius: 16px;
+  border-bottom-right-radius: 16px;
+  padding: 20px;
+  height: 100%;
+}
+
+/* Buttons */
+.btn {
+  border-radius: 6px;
+  font-weight: 500;
+  transition: 0.3s ease;
+}
+.btn:hover {
+  transform: scale(1.05);
+}
+
+/* Outline styles */
+.btn-outline-primary {
+  border-color: #0077b6;
+  color: #0077b6;
+}
+.btn-outline-primary:hover {
+  background-color: #0077b6;
+  color: #fff;
+}
+
+.btn-outline-danger {
+  border-color: #d9534f;
+  color: #d9534f;
+}
+.btn-outline-danger:hover {
+  background-color: #d9534f;
+  color: #fff;
+}
+
+/* Back button */
+.back-btn {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 1000;
+  border-radius: 8px;
+  font-weight: 500;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+.back-btn:hover {
+  transform: scale(1.05);
+  transition: 0.3s ease;
+}
+/* Gradient background */
+.bg-gradient {
+  background: linear-gradient(135deg, #1e3c72, #2a5298);
+}
+
+/* Gradient button */
+.btn-gradient {
+  background: linear-gradient(135deg, #667eea, #764ba2);
+  color: #fff;
+  border: none;
+  transition: transform 0.2s ease-in-out;
+}
+
+.btn-gradient:hover {
+  transform: scale(1.05);
+  color: #fff;
+}
+/* Static gradient background */
+.static-gradient {
+  background: linear-gradient(135deg, #1e3c72, #2a5298);
+  height: 100vh;
+  width: 100vw;
+  margin: 0;
+}
+
+/* Fade-in effect for card */
+.fade-in {
+  opacity: 0;
+  animation: fadeIn 1.5s ease forwards;
+}
+
+@keyframes fadeIn {
+  to { opacity: 1; }
+}
+
+/* Fade-up effect on click */
+.fade-up {
+  animation: fadeUp 0.6s ease forwards;
+}
+
+@keyframes fadeUp {
+  to {
+    opacity: 0;
+    transform: translateY(-40px);
+  }
+}
+
+/* Gradient button */
+.btn-gradient {
+  background: linear-gradient(135deg, #667eea, #764ba2);
+  color: #fff;
+  border: none;
+  transition: transform 0.2s ease-in-out;
+}
+
+.btn-gradient:hover {
+  transform: scale(1.05);
+  color: #fff;
+}
+/* Record indicator */
+#recordIndicator {
+  font-size: 1rem;
+  animation: blink 1s infinite;
+}
+
+@keyframes blink {
+  0% { opacity: 1; }
+  50% { opacity: 0; }
+  100% { opacity: 1; }
+}
+
+/* Hidden utility */
+.hidden {
+  display: none !important;
+}

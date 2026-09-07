@@ -1,0 +1,22 @@
+{% extends "landing_base.html" %}
+{% block content %}
+<div class="d-flex justify-content-center align-items-center vh-100 static-gradient">
+  <div id="landing-card" class="text-center bg-white p-5 rounded shadow-lg fade-in" style="max-width: 500px; width: 100%;">
+    <h1 class="fw-bold text-primary mb-3">EduVoice AI</h1>
+    <p class="lead mb-4">Turn lectures into clear, structured notes instantly.</p>
+    <a id="get-started-btn" href="{{ url_for('login') }}" class="btn btn-gradient btn-lg">Get Started</a>
+  </div>
+</div>
+
+<script>
+  // Fade-up animation on Get Started click
+  document.getElementById("get-started-btn").addEventListener("click", function(e) {
+    e.preventDefault(); // stop immediate redirect
+    const card = document.getElementById("landing-card");
+    card.classList.add("fade-up");
+    setTimeout(() => {
+      window.location.href = this.href; // redirect after animation
+    }, 600); // match animation duration
+  });
+</script>
+{% endblock %}
