@@ -80,3 +80,7 @@ EduVoice consists of the following major layers:
               │ Transcript / Notes   │
               │ PDF / TXT Export     │
               └──────────────────────┘
+
+
+##Project Team
+Eduvoice is developed as a collaborative lab project using GitHub and Jenkins
